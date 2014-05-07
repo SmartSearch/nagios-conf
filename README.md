@@ -3,14 +3,20 @@ nagios-conf
 
 Configuration for the Nagios monitoring software for our different sandbox services.
 
-In order to configure your Linux Nagios3 instance, copy all the cfg files provided into your /etc/nagios3 directory and add the following lines to your nagios.cfg file
-
-
+In order to apply this configuration files to your Nagios instance, copy all the cfg files provided in any directory in your server (typically `/etc/nagios/conf.d/smart`) and be sure that that directory is included in some `cfg_dir` directive in your `nagios.cfg` file. For example...
 
 ```
-cfg_file=/etc/nagios3/servers.cfg
-cfg_file=/etc/nagios3/hostgroups.cfg
-cfg_file=/etc/nagios3/services.cfg
-cfg_file=/etc/nagios3/servicegroups.cfg
-cfg_file=/etc/nagios3/templates.cfg
+cfg_dir=/etc/nagios/conf.d
+```
+
+Check your configuration in order to ensure that all is ready and without errors...
+
+```
+sudo nagios -v /etc/nagios/nagios.cfg
+```
+
+And restart your Nagios service...
+
+```
+sudo service nagios restart
 ```
